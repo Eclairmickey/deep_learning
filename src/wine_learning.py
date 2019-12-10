@@ -2,56 +2,29 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys,os
 sys.path.append(os.pardir)
-#from two_layer_net import TwoLayerNet('W1','b1','W2','b2')
-from many_layer_net import ManyLayerNet
+from file_import import *
+from two_layer_net import TwoLayerNet
+#from many_layer_net import ManyLayerNet
 
-def file_input(path,num):
-    data=np.zeros((num,11))
-    spi_data=np.zeros((num,10))
-    cnt=np.zeros(10)
-    col=0
-
-    with open(path) as f:
-        for s_line in f:
-            
-            #改行のみの行にたどり着いたら終了
-            """
-            
-            if s_line=='\n':
-                break
-            """
-            #'\n' to ''  split
-            s_line=s_line.replace('\n','')
-            line_data=s_line.split(',')
-        
-            for i in range(0,11):
-                data[col][i]=float(line_data[i])
-
-            cnt[int(line_data[11])]+=1
-            spi_data[col][int(line_data[11])]=1
-            col+=1
-        f.close()
-        print(cnt)
-    return data,spi_data
-
-#load data 
-test_path="./../data_sets/wine_test.csv"
-train_path="./../data_sets/wine.csv"
-x_test,t_test=file_input(test_path,500)
-x_train,t_train=file_input(train_path,500)
+ 
+test_path="./../data_sets/wine.csv"
+train_path="./../data_sets/wine_test.csv"
+x_test,t_test=file_import(test_path,500,1)
+x_train,t_train=file_import(train_path,500,1)
 #print(x_train)
+print(x_train)
+print(x_test)
 
-network=ManyLayerNet(input_size=11,hidden_size=12,hidden_size2=10,output_size=10)
-#network=TwoLayerNet(input_size=11,hidden_size=12,output_size=10)
+#network=ManyLayerNet(input_size=11,hidden_size=12,hidden_size2=10,output_size=3)
+network=TwoLayerNet(input_size=11,hidden_size=12,output_size=3)
 itres_num=10000
 learning_rate = 0.1
-
 train_loss_list=[]
 test_loss_list=[]
 train_acc_list=[]
 test_acc_list=[]
 
-batch_size=25
+batch_size=100
 train_size = x_train.shape[0]
 
 iter_per_epoch=max(train_size/batch_size,1)
@@ -82,7 +55,7 @@ for i in range(itres_num):
 
 x=np.linspace(0,10,itres_num)
 
-"""
+
 plt.subplot(1,2,1)
 plt.title("Lossfunction train")
 plt.xlabel("iteration")
@@ -106,4 +79,5 @@ plt.title("test accurary")
 plt.xlabel("iteration")
 plt.ylabel("acc")
 plt.plot(test_acc_list)
+"""
 plt.show()
