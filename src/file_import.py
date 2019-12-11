@@ -38,11 +38,11 @@ def file_import(path,num,pattern):
                 spi_data[col][int(line_data[11])]=1
             else:
                 quality=int(line_data[11])
-                if quality<4:
+                if quality<=4:
                     spi_data[col][0]=1
-                elif quality<7:
+                elif quality<=7:
                     spi_data[col][1]=1
-                elif quality<11:
+                elif quality<=9:
                     spi_data[col][2]=1
                 
             col+=1
