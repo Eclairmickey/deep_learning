@@ -4,20 +4,18 @@ import sys,os
 sys.path.append(os.pardir)
 from file_import import *
 from two_layer_net import TwoLayerNet
-#from many_layer_net import ManyLayerNet
+#from multi_layer_net import MultiLayerNet
 
  
 test_path="./../data_sets/wine.csv"
 train_path="./../data_sets/wine_test.csv"
 x_test,t_test=file_import(test_path,500,1)
 x_train,t_train=file_import(train_path,500,1)
-#print(x_train)
-print(x_train)
-print(x_test)
 
-#network=ManyLayerNet(input_size=11,hidden_size=12,hidden_size2=10,output_size=3)
-network=TwoLayerNet(input_size=11,hidden_size=12,output_size=3)
-itres_num=10000
+
+#network=multiLayerNet(input_size=11,hidden_size=12,hidden_size2=10,output_size=3)
+network=TwoLayerNet(input_size=11,hidden_size=30,output_size=3)
+itres_num=7000
 learning_rate = 0.1
 train_loss_list=[]
 test_loss_list=[]
@@ -44,14 +42,15 @@ for i in range(itres_num):
     test_loss=network.loss(x_test,t_test)
     train_loss_list.append(train_loss)
     test_loss_list.append(test_loss)
-
+    
     if i%iter_per_epoch==0:
         train_acc=network.accuracy(x_train,t_train)
         test_acc=network.accuracy(x_test,t_test)
         train_acc_list.append(train_acc)
         test_acc_list.append(test_acc)
-        print(train_acc,test_acc)
+        #print(train_acc,test_acc)
 
+#print(train_acc_list)
 
 x=np.linspace(0,10,itres_num)
 

@@ -47,5 +47,6 @@ def file_import(path,num,pattern):
                 
             col+=1
         f.close()
-        print(cnt)
+        #評価の分布を表示する
+        #print(cnt)
     return data,spi_data

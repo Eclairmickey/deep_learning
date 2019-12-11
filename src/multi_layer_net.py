@@ -5,7 +5,7 @@ from common.layers import *
 from common.gradient import numerical_gradient
 from collections import OrderedDict
 
-class ManyLayerNet:
+class MultiLayerNet:
 
     def __init__(self, input_size, hidden_size,hidden_size2,output_size, weight_init_std = 0.01):
         # 重みの初期化
