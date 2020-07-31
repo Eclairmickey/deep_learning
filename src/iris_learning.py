@@ -10,8 +10,6 @@ def file_input(path):
     col=0
     with open(path) as f:
         for s_line in f:
-
-            #改行のみの行にたどり着いたら終了
             if s_line=='\n':
                 break
         
